@@ -1,0 +1,11 @@
+﻿  Program.cpp
+d:\onedrive\calculatoare si tehnologia informatiei\anul 3\semestrul 2\pi\aplicatieproiect\bagofwords\program.cpp(93): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+d:\onedrive\calculatoare si tehnologia informatiei\anul 3\semestrul 2\pi\aplicatieproiect\bagofwords\program.cpp(94): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+d:\onedrive\calculatoare si tehnologia informatiei\anul 3\semestrul 2\pi\aplicatieproiect\bagofwords\program.cpp(117): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+d:\onedrive\calculatoare si tehnologia informatiei\anul 3\semestrul 2\pi\aplicatieproiect\bagofwords\program.cpp(118): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+d:\onedrive\calculatoare si tehnologia informatiei\anul 3\semestrul 2\pi\aplicatieproiect\bagofwords\program.cpp(186): warning C4305: 'initializing': truncation from 'double' to 'float'
+d:\onedrive\calculatoare si tehnologia informatiei\anul 3\semestrul 2\pi\aplicatieproiect\bagofwords\program.cpp(187): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+d:\onedrive\calculatoare si tehnologia informatiei\anul 3\semestrul 2\pi\aplicatieproiect\bagofwords\program.cpp(204): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+d:\onedrive\calculatoare si tehnologia informatiei\anul 3\semestrul 2\pi\aplicatieproiect\bagofwords\program.cpp(321): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+d:\onedrive\calculatoare si tehnologia informatiei\anul 3\semestrul 2\pi\aplicatieproiect\bagofwords\program.cpp(552): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+  BagOfWords.vcxproj -> D:\OneDrive\Calculatoare si Tehnologia Informatiei\Anul 3\Semestrul 2\PI\AplicatieProiect\x64\Debug\BagOfWords.exe

@@ -1,0 +1,87 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{physics}
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+\begin{document}
+
+\title{Manual de utilizare\\
+{\footnotesize \textsuperscript{*}Procesare de Imagini - 9 Mai 2019}
+}
+
+\author{\IEEEauthorblockN{Catalin Moldovan}
+\IEEEauthorblockA{\textit{Grupa 30235} \\
+Universitatea Tehnica din Cluj-Napoca \\
+catalin.moldovan@student.utcluj.ro}
+}
+
+\maketitle
+
+\begin{abstract}
+Acest document descrie modul de utilizare al aplicatiei \textit{Recunoastere pe baza de semnaturi}
+\end{abstract}
+
+\section{Adaugare dependinte}
+\paragraph{Se vor adauga urmatoarele cai in sectiunea \textbf{General} din proprietatile aplicatiei}
+\begin{itemize}
+	\item \$(SolutionDir)/Libraries/OpenCV-4.1.0/opencv/build/x64/vc15/bin
+	\item \$(SolutionDir)/Libraries/install/include
+	\item \$(SolutionDir)/Libraries/OpenCV-4.1.0/opencv/build/include
+\end{itemize}
+
+\paragraph{Se vor adauga urmatoarele cai in sectiunea \textbf{Linker} din proprietatile aplicatiei}
+\begin{itemize}
+	\item \$(SolutionDir)/Libraries/OpenCV-4.1.0/opencv/build/x64/vc15/lib
+	\item \$(SolutionDir)/Libraries/install/x64/vc15/lib
+\end{itemize}
+
+\paragraph{Se vor adauga urmatoarele fisiere in sectiunea \textbf{Input} din proprietatile aplicatiei}
+\begin{itemize}
+	\item opencv\_world410d.lib
+	\item opencv\_xfeatures2d410d.lib
+\end{itemize}
+
+\section{Crearea fisierelor}
+In folderul \textbf{Semnaturi} se vor crea foldere (test1,test2,...) cu imagini de test, utilizate pentru antrenarea algoritmului, dupa urmatoarea regula: \textbf{image\_XXXX.jpg}, unde \textit{XXXX} reprezinta numarul imaginii de test (ex. 0001).
+
+In aceeasi locatie se creeaza folderul \textit{input} ce contine imaginea de intrare pentru incadrarea acesteia in una din categoriile create la pasul anterior.
+
+\section{Procesare imagini de test}
+In fisierul \textbf{Program.cpp}, in variabila \textit{DATASET\_PATH} se introduce calea catre fisierul ce contine folderele create la pasul anterior, utilizand doua caractere despartitoare. Variabila \textit{TESTING\_PERCENT\_PER} contine numarul imaginii introduse in folderul \textit{input}.
+
+Metoda \textbf{algoritmSemnatura} va utiliza algoritmul de clasificare K-means. Acesta presupune antrenarea prin imagini de test ce fac parte din anumite categorii, in cazul nostru semnaturi ale diferitelor persoane. Astfel se vor adauga metode \textbf{readGetImageDescriptors}("test[no]", [semnaturi], [cat]), unde \textit{no} reprezinta numarul folderului de test, \textit{semnaturi} numarul de imagini de test prezente in folderul respectiv si \textit{cat} reprezinta numarul categoriei incepand cu valoare 1 si continuand crescator in functie de numarul de metode adaugate.
+
+Metoda \textbf{testData}("input", TESTING\_PERCENT\_PER, [cat]) reprezinta clasificarea imaginii de intrare cu categoriile de test incluse in variabila \textit{cat}.
+
+Metoda \textbf{algoritmHist} va utiliza un algoritm de comparare a imaginilor de test cu cea de intrare prin histograma cu numar de acumulare redus. Se utilizeaza astfel media dintre numarul de pixeli negri de pe orizontala si verticala a fiecarei imagini de test cu cea de intrare. Se vor adauga numele folderelor de test: (test1,test2,...) in variabila \textbf{testImg[no]}, unde \textit{no} reprezinta numarul total de fisiere adaugate.
+
+In pasul urmator se va introduce calea folderelor de test in metoda \textbf{processedImage} din variabila \textbf{imgTest} si calea imaginii de intrare din variabila \textbf{srcInput}.
+
+\section{Rulare program}
+Rularea programului se va efectua in modul \textbf{Debug} prin \textit{Local Windows Debugger}.
+
+In procesul algoritmului K-means se vor citi, decta si transforma imaginile de test, urmand ca apoi sa se genereze histogramele si antrenarea SVM. Rezultatul final este redat prin obtinerea valorii de 0\% sau 100\% a acuratetii clasificarii pentru fiecare categorie de test. Pentru fiecare proces este calculat timpul de executie in secunde.
+
+In procesul algoritmului de identificarii semnaturii prin histograma se reda in consola procentajul pentru fiecare categorie. In final procentajul cel mai ridicat, cu conditia ca acesta sa depaseasca 60\% reprezinta potrivirea semnaturii primite cu categoria din care face parte.
+
+% Referinte
+\begin{thebibliography}{00}
+\bibitem{b1} ``DescriptorMatcher::match'', website: https://docs.opencv.org/2.4/modul es/features2d/doc/common\_interfaces\_of\_descriptor\_matchers.html
+\bibitem{b2}``SVM::predict'', website: https://docs.opencv.org/3.1.0/d1/d73/tutorial\_in
+troduction\_to\_svm.html
+\bibitem{b3}``cv::xfeatures2d:;SIFT'', website: https://docs.opencv.org/3.4/d5/d3c/class
+cv\_1\_1xfeatures2d\_1\_1SIFT.html
+\bibitem{b4}``kmeans'', website: https://docs.opencv.org/3.4/d1/d5c/tutorial\_py\_kmeans
+\_opencv.html
+\end{thebibliography}
+\vspace{12pt}
+
+\end{document}
